@@ -21,6 +21,5 @@ public class ServerResponseException extends RuntimeException {
         this.httpHeaders = httpHeaders;
         this.bodyErrorResponse = bodyErrorResponse;
         log.error("Error ServerResponseException. Body={} HttpStatus = {} ", bodyErrorResponse, httpStatus);
-
     }
 }
