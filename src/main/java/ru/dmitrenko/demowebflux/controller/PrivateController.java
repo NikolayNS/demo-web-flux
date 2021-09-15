@@ -1,10 +1,8 @@
 package ru.dmitrenko.demowebflux.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import ru.dmitrenko.demowebflux.model.dto.request.UserAddRequest;
 import ru.dmitrenko.demowebflux.model.dto.response.UserDetailsResponse;
@@ -23,7 +21,8 @@ public class PrivateController {
 
     private final PrivateService privateService;
 
-    @GetMapping(value = ADD_USER, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(value = ADD_USER, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public Mono<UserDetailsResponse> addUser(@RequestBody @Valid UserAddRequest request) {
         return privateService.addUser(request);
     }
